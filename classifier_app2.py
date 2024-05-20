@@ -3,7 +3,6 @@ from transformers import CamembertTokenizer, CamembertForSequenceClassification
 import torch
 import os
 import requests
-import time
 
 def download_file(url, output_path):
     response = requests.get(url, stream=True)
@@ -62,8 +61,7 @@ if st.button("Evaluate"):
         for i, url in enumerate(model_parts_urls):
             part_path = model_file_path + f".part{i}"
             print("Downloading part", i, "from URL:", url)  # Print the URL being downloaded
-            time.sleep(10)
-            download_file(url, part_path)
+            #download_file(url, part_path)
             print("Downloaded part", i)  # Print when each part is downloaded
 
         num_parts = len(model_parts_urls)
