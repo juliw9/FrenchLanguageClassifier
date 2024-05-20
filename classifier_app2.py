@@ -57,9 +57,9 @@ if st.button("Evaluate"):
         config_file_path = os.path.join("temp", "config.json")
         download_file(config_url, config_file_path)
 
-        model_file_path = os.path.join("temp", "model_pytorch", "pytorch_model.bin")
+        model_file_path = os.path.join("temp", "model_pytorch")
         for i, url in enumerate(model_parts_urls):
-            part_path = model_file_path + f".part{i}"
+            part_path = model_file_path + f"pytorch_model.part{i}"
             print("Downloading part", i, "from URL:", url)  # Print the URL being downloaded
             #download_file(url, part_path)
             print("Downloaded part", i)  # Print when each part is downloaded
