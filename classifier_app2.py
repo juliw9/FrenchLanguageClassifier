@@ -60,12 +60,16 @@ if st.button("Evaluate"):
         model_file_path = os.path.join("temp", "model_pytorch", "pytorch_model.bin")
         for i, url in enumerate(model_parts_urls):
             part_path = model_file_path + f".part{i}"
+            print("Downloading part", i, "from URL:", url)  # Print the URL being downloaded
             download_file(url, part_path)
+            print("Downloaded part", i)  # Print when each part is downloaded
 
         num_parts = len(model_parts_urls)
+        print("Reassembling file...")
         reassembled_file_path = reassemble_file(model_file_path, num_parts)
         
         if reassembled_file_path:
+            print("File reassembled successfully")
             prediction = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
             st.write(f"Predicted language level: {prediction}")
         else:
