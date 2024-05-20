@@ -3,6 +3,7 @@ from transformers import CamembertTokenizer, CamembertForSequenceClassification
 import torch
 import os
 import requests
+import math
 
 def download_file(url, output_path):
     response = requests.get(url, stream=True)
@@ -35,6 +36,13 @@ def evaluate_camembert_model(config_file, model_file, input_text):
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
     levels = ["A1","A2","B1","B2","C1","C2"]
     return levels[predicted_class]
+
+# Define the chunk size in bytes
+chunk_size_bytes = 24 * 1024 * 1024  # 24 MB
+
+# Calculate the number of parts
+model_file_size_bytes = os.path.getsize(model_file_path)
+number_of_parts = math.ceil(model_file_size_bytes / chunk_size_bytes)
 
 # Streamlit interface
 st.title("French Language Level Evaluator")
