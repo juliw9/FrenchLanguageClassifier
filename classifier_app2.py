@@ -19,7 +19,7 @@ def reassemble_file(file_path, num_parts):
     try:
         with open(file_path, 'wb') as output_file:
             for i in range(num_parts):
-                part_file_path = f"{file_path}.part{i}"
+                part_file_path = f"{file_path}/pytorch_model.part{i}"
                 with open(part_file_path, 'rb') as part_file:
                     chunk = part_file.read()
                     output_file.write(chunk)
@@ -59,7 +59,7 @@ if st.button("Evaluate"):
 
         model_file_path = os.path.join("temp", "model_pytorch")
         for i, url in enumerate(model_parts_urls):
-            part_path = model_file_path + f"pytorch_model.part{i}"
+            part_path = model_file_path + f"/pytorch_model.part{i}"
             print("Downloading part", i, "from URL:", url)  # Print the URL being downloaded
             #download_file(url, part_path)
             print("Downloaded part", i)  # Print when each part is downloaded
