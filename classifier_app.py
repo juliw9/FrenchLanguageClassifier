@@ -2,46 +2,42 @@ import streamlit as st
 from transformers import CamembertForSequenceClassification, CamembertTokenizer
 import torch
 import json
-import requests
 import os
 
-# Function to download file from Google Drive
-def download_file_from_google_drive(file_id, destination):
-    url = f"https://drive.google.com/uc?export=download&id={file_id}"
-    response = requests.get(url, stream=True)
-    token = None
+def reassemble_file(chunk_dir, output_path):
+    chunk_number = 0
+    with open(output_path, 'wb') as output_file:
+        while True:
+            chunk_file_name = os.path.join(chunk_dir, f"model.safetensors.part{chunk_number}")
+            if not os.path.exists(chunk_file_name):
+                break
+            with open(chunk_file_name, 'rb') as chunk_file:
+                output_file.write(chunk_file.read())
+            chunk_number += 1
 
-    for key, value in response.cookies.items():
-        if key.startswith('download_warning'):
-            token = value
-            break
+# Directory where the chunks are stored
+model_chunks_dir = "model"
+model_reassembled_path = "reassembled_model.safetensors"
 
-    if token:
-        params = {'id': file_id, 'confirm': token}
-        response = requests.get(url, params=params, stream=True)
-
-    with open(destination, 'wb') as f:
-        for chunk in response.iter_content(32768):
-            f.write(chunk)
-
-# File paths
-config_path = "config.json"
-model_path = "model.safetensors"
-file_id = "1HbAX8pMeSNxv_ZTSItoOIV0GWcWIatNI"  # Your file ID from Google Drive
-
-# Check if model file exists, if not download it
-if not os.path.exists(model_path):
-    st.write("Downloading model file...")
-    download_file_from_google_drive(file_id, model_path)
-    st.write("Model file downloaded successfully!")
+if not os.path.exists(model_reassembled_path):
+    st.write("Reassembling model file...")
+    reassemble_file(model_chunks_dir, model_reassembled_path)
+    st.write("Model file reassembled successfully!")
 
 # Load the configuration
+config_path = "config.json"
+
+# Load the tokenizer
+tokenizer = CamembertTokenizer.from_pretrained('camembert-base')
+
+# Load the configuration from the file
 with open(config_path, 'r') as f:
     config = json.load(f)
 
-# Load the tokenizer and model
-tokenizer = CamembertTokenizer.from_pretrained('camembert-base')
-model = CamembertForSequenceClassification.from_pretrained('camembert-base', state_dict=torch.load(model_path), config=config)
+# Load the model
+model = CamembertForSequenceClassification.from_pretrained(
+    'camembert-base', state_dict=torch.load(model_reassembled_path), config=config
+)
 
 # Define a function to predict difficulty
 def predict_difficulty(sentence):
