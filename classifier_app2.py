@@ -67,6 +67,7 @@ if st.button("Evaluate"):
         num_parts = len(model_parts_urls)
         print("Reassembling file...")
         #reassembled_file_path = reassemble_file(model_file_path, num_parts)
+        reassembled_file_path = True
         
         if reassembled_file_path:
             print("File reassembled successfully")
