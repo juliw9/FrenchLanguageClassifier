@@ -66,12 +66,12 @@ if st.button("Evaluate"):
 
         num_parts = len(model_parts_urls)
         print("Reassembling file...")
-        reassembled_file_path = reassemble_file(model_file_path, num_parts)
+        #reassembled_file_path = reassemble_file(model_file_path, num_parts)
         
         if reassembled_file_path:
             print("File reassembled successfully")
-            prediction = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
-            st.write(f"Predicted language level: {prediction}")
+        #    prediction = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
+        #    st.write(f"Predicted language level: {prediction}")
         else:
             st.error("Failed to reassemble the model file.")
     else:
