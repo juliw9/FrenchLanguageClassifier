@@ -34,8 +34,10 @@ def evaluate_camembert_model(config_file, model_file, input_text):
     
     # Get predicted class
     predicted_class = torch.argmax(outputs.logits, dim=1).item()
+
+    levels = ["A1", "A2", "B1", "B2", "C1", "C2"]
     
-    return predicted_class
+    return levels[predicted_class]
 
 # Streamlit interface
 st.title("French Language Level Evaluator")
