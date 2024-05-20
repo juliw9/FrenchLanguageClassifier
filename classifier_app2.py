@@ -6,10 +6,14 @@ import requests
 
 def download_file(url, output_path):
     response = requests.get(url, stream=True)
-    with open(output_path, 'wb') as f:
-        for chunk in response.iter_content(chunk_size=8192):
-            if chunk:
-                f.write(chunk)
+    if response.status_code == 200:  # Check if the request was successful
+        with open(output_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                if chunk:
+                    f.write(chunk)
+        st.write("Download completed successfully.")
+    else:
+        st.error(f"Failed to download file from URL: {url}")
 
 def reassemble_file(file_path, num_parts):
     try:
@@ -53,7 +57,7 @@ if st.button("Evaluate"):
         config_file_path = os.path.join("temp", "config.json")
         download_file(config_url, config_file_path)
 
-        model_file_path = os.path.join("temp", "model_pytorch/pytorch_model.bin")
+        model_file_path = os.path.join("temp", "model_pytorch", "pytorch_model.bin")
         for i, url in enumerate(model_parts_urls):
             part_path = model_file_path + f".part{i}"
             download_file(url, part_path)
