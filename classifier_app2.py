@@ -39,9 +39,9 @@ def evaluate_camembert_model(config_file, model_file, input_text):
 # Streamlit interface
 st.title("French Language Level Evaluator")
 
-config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/path_to_config_file/config.json"
+config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/config.json"
 model_parts_urls = [
-    f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/path_to_model_parts/pytorch_model.bin.part{i}" 
+    f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/model_pytorch/pytorch_model.bin.part{i}" 
     for i in range(6)
 ] 
 
