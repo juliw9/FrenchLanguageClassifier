@@ -1,1 +1,3 @@
-The goal of the project is to predict the level of difficulty of a sentence in French language.
+The goal of the project is to predict the level of difficulty of a sentence in French language. Difficulty levels include A1, A2, B1, B2, C1 and C2.
+There is some training data given in order to train the model which is done with 80% of this data. The leftover randomly chosen 20% is used for testing. Additioanlly, there is also some unlabelled test data that the model was tested on to achieve some general metrics associated with the testing. These metrics include precision, recall, F1 score and accuracy.
+Before cosnidering deeper analysis of this project, pre-developed classifiers were implemented into predcition, including KNN, Decision Tree, Random Forest and Logistic Regression. Metric results of these classifiers are included in the table. KNN performs the worst among the classifiers in this scenario.
