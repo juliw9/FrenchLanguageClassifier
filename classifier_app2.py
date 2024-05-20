@@ -61,7 +61,7 @@ if st.button("Evaluate"):
         for i, url in enumerate(model_parts_urls):
             part_path = model_file_path + f"/pytorch_model.bin.part{i}"
             st.write("Downloading part", i, "from URL:", url)  # Print the URL being downloaded
-            #download_file(url, part_path)
+            download_file(url, part_path)
             st.write("Downloaded part", i)  # Print when each part is downloaded
 
         num_parts = len(model_parts_urls)
