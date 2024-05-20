@@ -37,21 +37,14 @@ def evaluate_camembert_model(config_file, model_file, input_text):
     levels = ["A1","A2","B1","B2","C1","C2"]
     return levels[predicted_class]
 
-# Define the chunk size in bytes
-chunk_size_bytes = 24 * 1024 * 1024  # 24 MB
-
-# Calculate the number of parts
-model_file_size_bytes = os.path.getsize(model_file_path)
-number_of_parts = math.ceil(model_file_size_bytes / chunk_size_bytes)
-
 # Streamlit interface
 st.title("French Language Level Evaluator")
 
 config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/path_to_config_file/config.json"
 model_parts_urls = [
     f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/path_to_model_parts/pytorch_model.bin.part{i}" 
-    for i in range(number_of_parts)
-]  # Adjust `number_of_parts`
+    for i in range(6)
+] 
 
 input_text = st.text_input("Enter a French sentence:")
 
