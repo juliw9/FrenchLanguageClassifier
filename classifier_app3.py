@@ -51,9 +51,10 @@ def set_background(image_url):
         f"""
         <style>
         .stApp {{
-            background: url("{image_url}") fixed;
+            background: url("{image_url}");
             background-size: cover;
             padding: 1rem;
+            filter: brightness(70%) opacity(0.8);
         }}
         </style>
         """,
