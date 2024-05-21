@@ -3,6 +3,7 @@ from transformers import CamembertTokenizer, CamembertForSequenceClassification
 import torch
 import os
 import requests
+import sentencepiece
 
 def download_file(url, output_path):
     response = requests.get(url, stream=True)
