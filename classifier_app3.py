@@ -81,7 +81,6 @@ input_text = st.text_input("Enter a French sentence:")
 # Set background image
 set_background("https://upload.wikimedia.org/wikipedia/commons/9/92/Drapeau_de_la_France.png")
 
-
 if st.button("Evaluate"):
     if input_text:
         # Download the config file
