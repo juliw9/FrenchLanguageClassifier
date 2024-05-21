@@ -53,20 +53,15 @@ def set_background(image_url):
         .stApp {{
             background: url("{image_url}");
             background-size: cover;
-            background-repeat: no-repeat;
             background-attachment: fixed;
-            opacity: 1;
+            background-repeat: no-repeat;
         }}
-        .stApp::before {{
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            filter: opacity(0.1);
-            z-index: -1;
+        .text-container {{
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px;
         }}
         </style>
         """,
