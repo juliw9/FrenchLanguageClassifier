@@ -87,32 +87,35 @@ input_text = st.text_input("Enter a French sentence:")
 # Set background image
 set_background("https://upload.wikimedia.org/wikipedia/commons/9/92/Drapeau_de_la_France.png")
 
-if st.button("Evaluate"):
-    if input_text:
-        # Download the config file
-        config_file_path = os.path.join("temp", "config.json")
-        download_file(config_url, config_file_path)
-
-        # Download and reassemble the model file
-        model_file_path = os.path.join("temp", "pytorch_model.bin")
-        for i, url in enumerate(model_parts_urls):
-            part_path = model_file_path + f".part{i}"
-            #st.write("Downloading part", i, "from URL:", url)
-            download_file(url, part_path)
-            #st.write("Downloaded part", i)
-
-        num_parts = len(model_parts_urls)
-        #st.write("Reassembling file...")
-        reassembled_file_path = reassemble_file(model_file_path, num_parts)
-
-        if reassembled_file_path:
-            #st.write("File reassembled successfully")
-            # Evaluate the model with the input text
-            predicted_class_idx = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
-            levels = ["A1", "A2", "B1", "B2", "C1", "C2"]
-            predicted_level = levels[predicted_class_idx]
-            st.write(f"Predicted language level: {predicted_level}")
+with st.container():
+    st.markdown('<div class="text-container">', unsafe_allow_html=True)
+    if st.button("Evaluate"):
+        if input_text:
+            # Download the config file
+            config_file_path = os.path.join("temp", "config.json")
+            download_file(config_url, config_file_path)
+    
+            # Download and reassemble the model file
+            model_file_path = os.path.join("temp", "pytorch_model.bin")
+            for i, url in enumerate(model_parts_urls):
+                part_path = model_file_path + f".part{i}"
+                #st.write("Downloading part", i, "from URL:", url)
+                download_file(url, part_path)
+                #st.write("Downloaded part", i)
+    
+            num_parts = len(model_parts_urls)
+            #st.write("Reassembling file...")
+            reassembled_file_path = reassemble_file(model_file_path, num_parts)
+    
+            if reassembled_file_path:
+                #st.write("File reassembled successfully")
+                # Evaluate the model with the input text
+                predicted_class_idx = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
+                levels = ["A1", "A2", "B1", "B2", "C1", "C2"]
+                predicted_level = levels[predicted_class_idx]
+                st.write(f"Predicted language level: {predicted_level}")
+            else:
+                st.error("Failed to reassemble the model file.")
         else:
-            st.error("Failed to reassemble the model file.")
-    else:
-        st.error("Please enter a sentence.")
+            st.error("Please enter a sentence.")
+    st.markdown('</div>', unsafe_allow_html=True)
