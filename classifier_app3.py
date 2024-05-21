@@ -45,31 +45,24 @@ def evaluate_camembert_model(config_file, model_file, input_text):
     predicted_class_idx = torch.argmax(logits, dim=1).item()
     return predicted_class_idx
 
-# CSS for background image
-def set_background(image_url):
-    st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background: url("{image_url}");
-            background-size: cover;
-            padding: 1rem;
-        }}
-        .stApp::before {{
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            filter: brightness(50%) opacity(0.1); /* Adjust brightness and opacity as needed */
-            z-index: -1;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+# Set the background image
+background_image = "https://upload.wikimedia.org/wikipedia/commons/9/92/Drapeau_de_la_France.png"
+
+# Define CSS to make the background image more pale
+pale_background_css = """
+<style>
+body {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/92/Drapeau_de_la_France.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: brightness(80%) saturate(50%); /* Adjust these values as needed */
+}
+.stApp {
+    color: black; /* Set the text color to black for better contrast */
+}
+</style>
+"""
 
 # Streamlit interface
 st.title("French Language Level Evaluator")
@@ -88,7 +81,7 @@ os.makedirs("temp", exist_ok=True)
 input_text = st.text_input("Enter a French sentence:")
 
 # Set background image
-set_background("https://upload.wikimedia.org/wikipedia/commons/9/92/Drapeau_de_la_France.png")
+st.markdown(pale_background_css, unsafe_allow_html=True)
 
 if st.button("Evaluate"):
     if input_text:
