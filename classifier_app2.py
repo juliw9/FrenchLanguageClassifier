@@ -19,7 +19,7 @@ def reassemble_file(file_path, num_parts):
     try:
         with open(file_path, 'wb') as output_file:
             for i in range(num_parts):
-                part_file_path = f"{file_path}/pytorch_model.bin.part{i}"
+                part_file_path = f"{file_path}.part{i}"
                 with open(part_file_path, 'rb') as part_file:
                     chunk = part_file.read()
                     output_file.write(chunk)
