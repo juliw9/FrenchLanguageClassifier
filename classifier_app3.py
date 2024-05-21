@@ -71,6 +71,11 @@ def set_background(image_path):
             color: black;
             margin-top: 10px;
         }}
+        .source-text {{
+            font-size: 0.8em;
+            color: black;
+            margin-top: 20px;
+        }}
         </style>
         """,
         unsafe_allow_html=True
@@ -129,6 +134,11 @@ if st.button("Evaluate"):
             st.markdown(f'<div class="result-text">Predicted language level: {predicted_level}</div>', unsafe_allow_html=True)
             description = level_descriptions[predicted_level]
             st.markdown(f'<div class="description-text">{description}</div>', unsafe_allow_html=True)
+            # Add source line
+            st.markdown(
+                f'<div class="source-text">Source: <a href="https://www.coe.int/en/web/common-european-framework-reference-languages/table-1-cefr-3.3-common-reference-levels-global-scale" target="_blank">Common European Framework of Reference for Languages</a></div>', 
+                unsafe_allow_html=True
+            )
         else:
             st.error("Failed to reassemble the model file.")
     else:
