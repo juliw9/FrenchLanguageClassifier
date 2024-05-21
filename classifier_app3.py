@@ -18,7 +18,6 @@ def download_file(url, output_path):
             for chunk in response.iter_content(chunk_size=8192):
                 if chunk:
                     f.write(chunk)
-        #st.write(f"Downloaded: {output_path}")
     else:
         st.error(f"Failed to download file from URL: {url}")
 
@@ -63,15 +62,30 @@ def set_background(image_path):
             background-repeat: no-repeat;
         }}
         .result-text {{
-            color: black;
+            color: white;
             font-size: 2em;
             font-weight: bold;
+        }}
+        .description-text {{
+            font-size: 1em;
+            color: white;
+            margin-top: 10px;
         }}
         </style>
         """,
         unsafe_allow_html=True
     )
-    
+
+# Dictionary mapping levels to descriptions
+level_descriptions = {
+    "A1": "Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. Can introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has. Can interact in a simple way provided the other person talks slowly and clearly and is prepared to help.",
+    "A2": "Can understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. very basic personal and family information, shopping, local geography, employment). Can communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters. Can describe in simple terms aspects of his/her background, immediate environment, and matters in areas of immediate need.",
+    "B1": "Can understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc. Can deal with most situations likely to arise whilst travelling in an area where the language is spoken. Can produce simple connected text on topics that are familiar or of personal interest. Can describe experiences and events, dreams, hopes, and ambitions and briefly give reasons and explanations for opinions and plans.",
+    "B2": "Can understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialization. Can interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party. Can produce clear, detailed text on a wide range of subjects and explain a viewpoint on a topical issue giving the advantages and disadvantages of various options.",
+    "C1": "Can understand a wide range of demanding, longer texts, and recognize implicit meaning. Can express him/herself fluently and spontaneously without much obvious searching for expressions. Can use language flexibly and effectively for social, academic, and professional purposes. Can produce clear, well-structured, detailed text on complex subjects, showing controlled use of organizational patterns, connectors, and cohesive devices.",
+    "C2": "Can understand with ease virtually everything heard or read. Can summarize information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation. Can express him/herself spontaneously, very fluently, and precisely, differentiating finer shades of meaning even in more complex situations."
+}
+
 # Streamlit interface
 st.title("French Language Level Evaluator")
 
@@ -102,21 +116,19 @@ if st.button("Evaluate"):
         model_file_path = os.path.join("temp", "pytorch_model.bin")
         for i, url in enumerate(model_parts_urls):
             part_path = model_file_path + f".part{i}"
-            #st.write("Downloading part", i, "from URL:", url)
             download_file(url, part_path)
-            #st.write("Downloaded part", i)
 
         num_parts = len(model_parts_urls)
-        #st.write("Reassembling file...")
         reassembled_file_path = reassemble_file(model_file_path, num_parts)
 
         if reassembled_file_path:
-            #st.write("File reassembled successfully")
             # Evaluate the model with the input text
             predicted_class_idx = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
             levels = ["A1", "A2", "B1", "B2", "C1", "C2"]
             predicted_level = levels[predicted_class_idx]
             st.markdown(f'<div class="result-text">Predicted language level: {predicted_level}</div>', unsafe_allow_html=True)
+            description = level_descriptions[predicted_level]
+            st.markdown(f'<div class="description-text">{description}</div>', unsafe_allow_html=True)
         else:
             st.error("Failed to reassemble the model file.")
     else:
