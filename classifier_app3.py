@@ -12,7 +12,7 @@ def download_file(url, output_path):
             for chunk in response.iter_content(chunk_size=8192):
                 if chunk:
                     f.write(chunk)
-        st.write(f"Downloaded: {output_path}")
+        #st.write(f"Downloaded: {output_path}")
     else:
         st.error(f"Failed to download file from URL: {url}")
 
@@ -71,16 +71,16 @@ if st.button("Evaluate"):
         model_file_path = os.path.join("temp", "pytorch_model.bin")
         for i, url in enumerate(model_parts_urls):
             part_path = model_file_path + f".part{i}"
-            st.write("Downloading part", i, "from URL:", url)
+            #st.write("Downloading part", i, "from URL:", url)
             download_file(url, part_path)
-            st.write("Downloaded part", i)
+            #st.write("Downloaded part", i)
 
         num_parts = len(model_parts_urls)
         st.write("Reassembling file...")
         reassembled_file_path = reassemble_file(model_file_path, num_parts)
 
         if reassembled_file_path:
-            st.write("File reassembled successfully")
+            #st.write("File reassembled successfully")
             # Evaluate the model with the input text
             predicted_class_idx = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
             levels = ["A1", "A2", "B1", "B2", "C1", "C2"]
