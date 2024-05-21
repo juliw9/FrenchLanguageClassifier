@@ -55,7 +55,7 @@ def set_background(image_url):
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            opacity: 1;
+            position: relative;
         }}
         .stApp::before {{
             content: "";
@@ -65,7 +65,7 @@ def set_background(image_url):
             width: 100%;
             height: 100%;
             background: inherit;
-            filter: opacity(0.1);
+            filter: brightness(200%) opacity(0.2);
             z-index: -1;
         }}
         </style>
