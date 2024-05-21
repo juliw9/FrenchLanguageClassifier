@@ -71,8 +71,8 @@ if st.button("Evaluate"):
         
         if reassembled_file_path:
             st.write("File reassembled successfully")
-        #    prediction = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
-        #    st.write(f"Predicted language level: {prediction}")
+            prediction = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
+            st.write(f"Predicted language level: {prediction}")
         else:
             st.error("Failed to reassemble the model file.")
     else:
