@@ -63,7 +63,7 @@ def set_background(image_url):
             width: 100%;
             height: 100%;
             background: inherit;
-            filter: brightness(70%) opacity(0.5); /* Adjust brightness and opacity as needed */
+            filter: brightness(50%) opacity(0.1); /* Adjust brightness and opacity as needed */
             z-index: -1;
         }}
         </style>
