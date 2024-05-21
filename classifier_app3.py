@@ -45,13 +45,13 @@ def evaluate_camembert_model(config_file, model_file, input_text):
     predicted_class_idx = torch.argmax(logits, dim=1).item()
     return predicted_class_idx
 
-# CSS for background image
-def set_background(image_url):
+# CSS for background image and white rectangle
+def set_background(image_path):
     st.markdown(
         f"""
         <style>
         .stApp {{
-            background: url("{image_url}");
+            background: url("data:image/png;base64,{image_path}");
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -62,12 +62,14 @@ def set_background(image_url):
             border-radius: 10px;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
             margin: 20px;
+            z-index: 1;
+            position: relative;
         }}
         </style>
         """,
         unsafe_allow_html=True
     )
-
+    
 # Streamlit interface
 st.title("French Language Level Evaluator")
 
@@ -85,7 +87,8 @@ os.makedirs("temp", exist_ok=True)
 input_text = st.text_input("Enter a French sentence:")
 
 # Set background image
-set_background("https://upload.wikimedia.org/wikipedia/commons/9/92/Drapeau_de_la_France.png")
+image_path = get_image_base64("Drapeau_de_la_France.png")
+set_background(image_path)
 
 if st.button("Evaluate"):
     if input_text:
