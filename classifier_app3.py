@@ -62,13 +62,13 @@ def set_background(image_path):
             background-repeat: no-repeat;
         }}
         .result-text {{
-            color: white;
+            color: black;
             font-size: 2em;
             font-weight: bold;
         }}
         .description-text {{
             font-size: 1em;
-            color: white;
+            color: black;
             margin-top: 10px;
         }}
         </style>
