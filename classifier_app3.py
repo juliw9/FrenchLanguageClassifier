@@ -3,6 +3,7 @@ from transformers import CamembertTokenizer, CamembertForSequenceClassification,
 import torch
 import os
 import requests
+import base64
 
 # Function to download files
 def download_file(url, output_path):
