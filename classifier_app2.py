@@ -45,7 +45,7 @@ st.title("French Language Level Evaluator")
 
 config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/config.json"
 model_parts_urls = [
-    f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/model_pytorch/pytorch_model.bin.part{i}" 
+    f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/pytorch_model.bin.part{i}" 
     for i in range(6)
 ] 
 
@@ -57,9 +57,9 @@ if st.button("Evaluate"):
         config_file_path = os.path.join("temp", "config.json")
         download_file(config_url, config_file_path)
 
-        model_file_path = os.path.join("temp", "model_pytorch")
+        model_file_path = os.path.join("temp", "pytorch_model.bin")
         for i, url in enumerate(model_parts_urls):
-            part_path = model_file_path + f"/pytorch_model.bin.part{i}"
+            part_path = model_file_path + f".part{i}"
             st.write("Downloading part", i, "from URL:", url)  # Print the URL being downloaded
             download_file(url, part_path)
             st.write("Downloaded part", i)  # Print when each part is downloaded
