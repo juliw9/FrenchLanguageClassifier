@@ -63,7 +63,7 @@ def set_background(image_path):
             background-repeat: no-repeat;
         }}
         .result-text {{
-            color: white;
+            color: black;
             font-size: 2em;
             font-weight: bold;
         }}
