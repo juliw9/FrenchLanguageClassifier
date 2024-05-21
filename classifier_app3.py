@@ -62,14 +62,10 @@ def set_background(image_path):
             background-attachment: fixed;
             background-repeat: no-repeat;
         }}
-        .text-container {{
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 20px;
-            z-index: 1;
-            position: relative;
+        .result-text {{
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
         }}
         </style>
         """,
@@ -120,7 +116,7 @@ if st.button("Evaluate"):
             predicted_class_idx = evaluate_camembert_model(config_file_path, reassembled_file_path, input_text)
             levels = ["A1", "A2", "B1", "B2", "C1", "C2"]
             predicted_level = levels[predicted_class_idx]
-            st.write(f"Predicted language level: {predicted_level}")
+            st.markdown(f'<div class="result-text">Predicted language level: {predicted_level}</div>', unsafe_allow_html=True)
         else:
             st.error("Failed to reassemble the model file.")
     else:
