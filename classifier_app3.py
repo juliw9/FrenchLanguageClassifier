@@ -76,7 +76,7 @@ if st.button("Evaluate"):
             #st.write("Downloaded part", i)
 
         num_parts = len(model_parts_urls)
-        st.write("Reassembling file...")
+        #st.write("Reassembling file...")
         reassembled_file_path = reassemble_file(model_file_path, num_parts)
 
         if reassembled_file_path:
