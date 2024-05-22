@@ -108,7 +108,7 @@ os.makedirs("temp", exist_ok=True)
 input_text = st.text_input("Enter a French sentence:")
 
 # Set background image
-image_path = get_image_base64("Drapeau_de_la_France.png")
+image_path = get_image_base64("https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/StreamlitApp/Drapeau_de_la_France.png")
 set_background(image_path)
 
 if st.button("Evaluate"):
