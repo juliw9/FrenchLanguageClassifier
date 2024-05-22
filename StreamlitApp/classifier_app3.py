@@ -98,7 +98,7 @@ st.title("French Language Level Evaluator")
 config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/config.json"
 model_parts_urls = [
     f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/pytorch_model.bin.part{i}" 
-    for i in range(6)
+    for i in range(23)
 ]
 
 # Create temporary directory for downloading files
