@@ -5,10 +5,14 @@ import os
 import requests
 import base64
 
-# Helper function to convert image to base64
-def get_image_base64(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode()
+# Helper function to convert image to base64 from a URL
+def get_image_base64_from_url(image_url):
+    response = requests.get(image_url)
+    if response.status_code == 200:
+        return base64.b64encode(response.content).decode()
+    else:
+        st.error(f"Failed to download image from URL: {image_url}")
+        return None
 
 # Function to download files
 def download_file(url, output_path):
@@ -108,8 +112,10 @@ os.makedirs("temp", exist_ok=True)
 input_text = st.text_input("Enter a French sentence:")
 
 # Set background image
-image_path = get_image_base64("Drapeau_de_la_France.png")
-set_background(image_path)
+image_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/StreamlitApp/Drapeau_de_la_France.png"
+image_base64 = get_image_base64_from_url(image_url)
+if image_base64:
+    set_background(image_base64)
 
 if st.button("Evaluate"):
     if input_text:
