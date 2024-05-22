@@ -95,9 +95,9 @@ level_descriptions = {
 st.title("French Language Level Evaluator")
 
 # URLs for the config and model files
-config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/config.json"
+config_url = "https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/StreamlitApp/config.json"
 model_parts_urls = [
-    f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/pytorch_model.bin.part{i}" 
+    f"https://raw.githubusercontent.com/juliw9/FrenchLanguageClassifier/main/StreamlitApp/pytorch_model.bin.part{i}" 
     for i in range(23)
 ]
 
