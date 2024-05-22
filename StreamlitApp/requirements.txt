@@ -1,0 +1,7 @@
+streamlit
+transformers
+torch
+requests
+tokenizers
+sentencepiece
+pandas
