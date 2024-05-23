@@ -43,6 +43,6 @@ The final version of the actual model contains features that improve the simple 
 The link to our streamlit app is provided here:
 [https://ert3nlx6v3x4qqtfce6psh.streamlit.app](https://ert3nlx6v3x4qqtfce6psh.streamlit.app)
 
-The link to our YouTube video is provided here:
+The link to our YouTube video is provided here: https://www.youtube.com/watch?v=zJF8yJVpZNc
 
 This project was realized by Lazar Aleksic and Julian Wirtz as part of the course "Data Science and Machine Learning" by Michalis Vlachos. We jointly designed all codes evaluating the difficulty levels, with Lazar focussing more on the fine-tuning of the more first four models, while Julian focussed more on the fine-tuning of the CamemBERT model and its implementation to Streamlit. Lazar took care of the design of this github and the creation of the video. 
