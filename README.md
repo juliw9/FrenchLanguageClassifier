@@ -11,7 +11,7 @@ Here is a list of optimization parameters for each classifier:
 
 Logistic Regression:
 
-C: Inverse of regularization strength.
+C: Inverse of regularization strength.//
 solver: Algorithm to use in the optimization problem.
 penalty: Type of regularization ('l2', 'none').
 
