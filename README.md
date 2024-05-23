@@ -1,6 +1,6 @@
 # CamemBERT Model
 ## Introduction
-The goal of the project is to predict the level of difficulty of a sentence in French language. Difficulty levels include A1, A2, B1, B2, C1 and C2. In order to navigate the github page, there are three sections, including code, data, and streamlit app. The code sections contains the final version of the code in its significant parts. Every part represents one ML model. All units combined contributed to the accuracy of 0.618 which placed team Hublot at the fifth place. The data section contains two files of training data (what the model was trained on) and the unlabelled test data (what model was tested on to achieve the end accuracy). The section about the streamlit app contains the 23 parts of the actual model, the configuration file, the streamlit code necessary for the application operation, and an image of the app homepage.
+The goal of the project is to predict the level of difficulty of a sentence in French language. Difficulty levels include A1, A2, B1, B2, C1 and C2. In order to navigate the github page, there are three sections, including code, data, and streamlit app. The code sections contains the final version of the code in its significant parts. Every part represents one ML model. All units combined contributed to the accuracy of 0.618 which placed team Hublot at the fifth place. The data section contains two files of training data (what the model was trained on) and the unlabelled test data (what model was tested on to achieve the end accuracy). The folder StreamlitApp contains the remainders of our first try to create a streamlit app.
 
 There is some training data given in order to train the model which is done with 80% of this data. The leftover randomly chosen 20% is used for testing. Additionally, there is some unlabelled test data that the model was tested on to achieve some general metrics associated with the testing. These metrics include precision, recall, F1 score and accuracy.
 
@@ -50,6 +50,8 @@ The link to our streamlit app is provided here:
 [https://ert3nlx6v3x4qqtfce6psh.streamlit.app](https://ert3nlx6v3x4qqtfce6psh.streamlit.app)
 
 The link to our YouTube video is provided here: https://www.youtube.com/watch?v=zJF8yJVpZNc
+
+The link to our huggingface: https://huggingface.co/juliw9/FrenchModel/tree/main
 
 ## Splitting the Tasks
 This project was realized by Lazar Aleksic and Julian Wirtz as part of the course "Data Science and Machine Learning" by Michalis Vlachos. We jointly designed all codes evaluating the difficulty levels, with Lazar focussing more on the fine-tuning of the more first four models, while Julian focussed more on the fine-tuning of the CamemBERT model and its implementation to Streamlit. Lazar took care of the design of this github and the creation of the video. 
