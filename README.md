@@ -12,25 +12,26 @@ Here is a list of optimization parameters for each classifier:
 Logistic Regression:
 
 C: Inverse of regularization strength. <br>
-solver: Algorithm to use in the optimization problem.
-penalty: Type of regularization ('l2', 'none').
+solver: Algorithm to use in the optimization problem. <br>
+penalty: Type of regularization ('l2', 'none'). <br>
 
 Random Forest:
 
-n_estimators: Number of trees in the forest.
-max_depth: Maximum depth of the tree.
-min_samples_split: Minimum number of samples required to split an internal node.
-min_samples_leaf: Minimum number of samples required to be at a leaf node.
-max_features: Number of features to consider when looking for the best split.
+n_estimators: Number of trees in the forest. <br>
+max_depth: Maximum depth of the tree. <br>
+min_samples_split: Minimum number of samples required to split an internal node. <br>
+min_samples_leaf: Minimum number of samples required to be at a leaf node. <br>
+max_features: Number of features to consider when looking for the best split. <br>
+
 K-Nearest Neighbors (KNN):
 
-n_neighbors: Number of neighbors to use.
+n_neighbors: Number of neighbors to use. <br>
 
 Decision Tree:
 
-max_depth: Maximum depth of the tree.
-min_samples_split: Minimum number of samples required to split an internal node.
-min_samples_leaf: Minimum number of samples required to be at a leaf node.
+max_depth: Maximum depth of the tree. <br>
+min_samples_split: Minimum number of samples required to split an internal node. <br>
+min_samples_leaf: Minimum number of samples required to be at a leaf node. <br>
 criterion: Function to measure the quality of a split ('entropy').
 
 The model that team Hublot created uses CamemBERT model, specifically designed for classifying difficulty levels of French language. The CamemBERT model, introduced by Louis Martin et al., is a state-of-the-art French language model based on Facebook’s RoBERTa, trained on 138GB of French text. It addresses the limitations of existing models that are predominantly trained on English or multilingual data, offering superior performance in French-specific NLP tasks such as part-of-speech tagging, dependency parsing, named-entity recognition, and natural language inference. CamemBERT sets new benchmarks in these areas and is publicly available to support further research and applications in French NLP. 
