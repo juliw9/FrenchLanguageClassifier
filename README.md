@@ -12,5 +12,5 @@ The model that team Hublot created uses Camembert model, specifically designed f
 The link to our streamlit app is provided here:
 https://ert3nlx6v3x4qqtfce6psh.streamlit.app
 
-The link to our YouTube video is here:
+The link to our YouTube video is provided here:
 
