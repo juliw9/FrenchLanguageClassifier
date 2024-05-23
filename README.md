@@ -47,7 +47,7 @@ The final version of the actual model contains features that improve the simple 
 
 ## External Links
 The link to our streamlit app is provided here:
-[https://ert3nlx6v3x4qqtfce6psh.streamlit.app](https://ert3nlx6v3x4qqtfce6psh.streamlit.app)
+https://frenchlanguageclassifier-ugs2o2engy3ge2zahjymwn.streamlit.app
 
 The link to our YouTube video is provided here: https://www.youtube.com/watch?v=zJF8yJVpZNc
 
